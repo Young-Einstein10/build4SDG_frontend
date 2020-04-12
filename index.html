@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description"
+    content="With this tool, you can evaluate possible outcome of the Covid19 pandemic in your region based on WHO estimates.">
+  <link rel="stylesheet" href="style.css">
+  <title>Covid19 Estimator</title>
+</head>
+
+<body>
+  <div id="main">
+    <div class="row">
+      <div class="col">
+        <h2>
+          COVID-19 Estimator
+        </h2>
+        <form id="covid19-form" action="" method="POST">
+          <div class="dow">
+            <label for="population">
+              Population:
+              <input id="population" type="number" name="population" data-populaton required>
+            </label>
+          </div>
+
+          <div class="dow">
+            <label for="timeToElapse">
+              Time To Elapse:
+              <input id="timeToElapse" type="number" name="timeToElapse" data-time-to-elapse required>
+            </label>
+          </div>
+
+          <div class="dow">
+            <label for="reportedCases">
+              Reported Cases:
+              <input type="number" name="reportedCases" id="reportedCases" data-reported-cases required>
+            </label>
+          </div>
+
+          <div class="dow">
+            <label for="totalHospitalBeds">
+              Total Hospital Beds Available:
+              <input id="totalHospitalBeds" type="number" name="totalHospitalBeds" data-total-hospital-beds required>
+            </label>
+          </div>
+
+          <div class="dow">
+            <label for="periodType">Period Type:
+              <select id="periodType" name="periodType" data-period-type>
+                <option value="days">Days</option>
+                <option value="weeks">Weeks</option>
+                <option value="months">Months</option>
+              </select>
+            </label>
+          </div>
+
+          <button id="submit" type="submit" data-go-estimate>Submit</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
