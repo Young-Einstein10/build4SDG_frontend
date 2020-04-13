@@ -1,9 +1,106 @@
-const form = document.querySelector('#covid19-form');
-const population = document.querySelector('[data-populaton]');
-const timeToElapse = document.querySelector('[data-time-to-elapse]');
-const reportedCases = document.querySelector('[data-reported-cases]');
-const totalHospitalBeds = document.querySelector('[data-total-hospital-beds]');
-const periodType = document.querySelector('[data-period-type]');
+const $ = elem => document.querySelector(elem);
+
+const form = $('#covid19-form');
+const population = $('[data-populaton]');
+const timeToElapse = $('[data-time-to-elapse]');
+const reportedCases = $('[data-reported-cases]');
+const totalHospitalBeds = $('[data-total-hospital-beds]');
+const periodType = $('[data-period-type]');
+
+
+// Middle Column
+const midPopulation = $(".population");
+const midTimeToElapse = $(".timeToElapse");
+const midPeriodType = $(".periodType");
+const midReportedCases = $(".reportedCases");
+const midTotalHospitalBeds = $(".totalHospitalBeds");
+
+
+// Estimates Column
+const ui_currentlyInfected = $(".currentlyInfected");
+const ui_infectionsByRequestedTime = $(".infectionsByRequestedTime");
+const ui_severeCasesByRequestedTime = $(".severeCasesByRequestedTime");
+const ui_hospitalBedsByRequestedTime = $(".hospitalBedsByRequestedTime");
+const ui_casesForICUByRequestedTime = $(".casesForICUByRequestedTime");
+const ui_casesForventilatorsByRequestedTime = $(".casesForventilatorsByRequestedTime");
+const ui_dollarsInFlight = $(".dollarsInFlight");
+
+
+// Estimates Column: Severe Cases
+const x_currentlyInfected = $(".x-currentlyInfected");
+const x_infectionsByRequestedTime = $(".x-infectionsByRequestedTime");
+const x_severeCasesByRequestedTime = $(".x-severeCasesByRequestedTime");
+const x_hospitalBedsByRequestedTime = $(".x-hospitalBedsByRequestedTime");
+const x_casesForICUByRequestedTime = $(".x-casesForICUByRequestedTime");
+const x_casesForventilatorsByRequestedTime = $(".x-casesForventilatorsByRequestedTime");
+const x_dollarsInFlight = $(".x-dollarsInFlight");
+
+midPeriodType.innerHTML = `<p>Period (days, weeks, months):</p> ${periodType.value}`;
+
+
+// Add Event Listeners On All Inputs
+const addListenersOnInput = (eventType, elementWithListener, elementToChanged, textInElem) => {
+  elementWithListener.addEventListener(eventType, event => {
+    elementToChanged.innerHTML = `<p>${textInElem} ${event.target.value}</p>`;
+  })
+}
+
+addListenersOnInput('keyup', population, midPopulation, 'Population:');
+addListenersOnInput('keyup', timeToElapse, midTimeToElapse, 'Timme To Elapse:');
+addListenersOnInput('keyup', reportedCases, midReportedCases, 'Number of Reported Cases:');
+addListenersOnInput('change', periodType, midPeriodType, 'Period (days, weeks, months):');
+addListenersOnInput('keyup', totalHospitalBeds, midTotalHospitalBeds, 'Total Hospital Beds:');
+
+
+const updateUIwithEstimates = (outputData) => {
+  const { impact, severeImpact } = outputData;
+
+  updateLessCaseScenario(impact);
+  updateSevereCaseScenario(severeImpact);
+}
+
+
+const updateLessCaseScenario = (impactData) => {
+  const { 
+    currentlyInfected,
+    infectionsByRequestedTime,
+    severeCasesByRequestedTime,
+    hospitalBedsByRequestedTime,
+    casesForICUByRequestedTime,
+    casesForVentilatorsByRequestedTime,
+    dollarsInFlight 
+  } = impactData;
+
+  // console.table(impactData);
+
+  ui_currentlyInfected.innerHTML = `<p>Currently Infected: ${currentlyInfected}</p>`;
+  ui_infectionsByRequestedTime.innerHTML = `<p>Infections By Requested Time: ${infectionsByRequestedTime}</p>`;
+  ui_severeCasesByRequestedTime.innerHTML = `<p>Severe Cases By Requested Time: ${severeCasesByRequestedTime}</pSevere>`;
+  ui_hospitalBedsByRequestedTime.innerHTML = `<p>Hospital Beds By Requested Time: ${hospitalBedsByRequestedTime}</p>`;
+  ui_casesForICUByRequestedTime.innerHTML = `<p>Cases For ICU By Requested Time: ${casesForICUByRequestedTime}</p>`;
+  ui_casesForventilatorsByRequestedTime.innerHTML = `<p>Cases For Ventilators By Requested Time: ${casesForVentilatorsByRequestedTime}</p>`;
+  ui_dollarsInFlight.innerHTML = `<p>Amount of Money Lost During Outbreak: $${dollarsInFlight}</p>`;
+}
+
+const updateSevereCaseScenario = (severeImpactData) => {
+  const {
+    currentlyInfected,
+    infectionsByRequestedTime,
+    severeCasesByRequestedTime,
+    hospitalBedsByRequestedTime,
+    casesForICUByRequestedTime,
+    casesForVentilatorsByRequestedTime,
+    dollarsInFlight
+  } = severeImpactData;
+
+  x_currentlyInfected.innerHTML = `<p>Currently Infected: ${currentlyInfected}</p>`;
+  x_infectionsByRequestedTime.innerHTML = `<p>Infections By Requested Time: ${infectionsByRequestedTime}</p>`;
+  x_severeCasesByRequestedTime.innerHTML = `<p>Severe Cases By Requested Time: ${severeCasesByRequestedTime}</p>`;
+  x_hospitalBedsByRequestedTime.innerHTML = `<p>Hospital Beds By Requested Time: ${hospitalBedsByRequestedTime}</p>`;
+  x_casesForICUByRequestedTime.innerHTML = `<p>Cases For ICU By Requested Time: ${casesForICUByRequestedTime}</p>`;
+  x_casesForventilatorsByRequestedTime.innerHTML = `<p>Cases For Ventilators By Requested Time: ${casesForVentilatorsByRequestedTime}</p>`;
+  x_dollarsInFlight.innerHTML = `<p>Amount of Money Lost During Outbreak: $${dollarsInFlight}</p>`;
+}
 
 
 const convertToDays = (periodType, timeToElapse) => {
@@ -56,9 +153,10 @@ const estimate = (event) => {
     population: Number(population.value),
     totalHospitalBeds: Number(totalHospitalBeds.value)
   };
-  console.log(inputData);
+  // console.log(inputData);
   
-  covid19ImpactEstimator(inputData)
+  covid19ImpactEstimator(inputData);
+  form.reset();
 }
 
 const covid19ImpactEstimator = (data) => {
@@ -138,7 +236,8 @@ const covid19ImpactEstimator = (data) => {
     periodType,
     timeToElapse
   );
-  // console.log(output);
+
+  updateUIwithEstimates(output)
   return output;
 };
 

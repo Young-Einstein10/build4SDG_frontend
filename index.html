@@ -13,12 +13,12 @@
 
 <body>
   <div id="main">
+    <h2>
+      COVID-19 Estimator
+    </h2>
     <div class="row">
       <div class="col">
-        <h2>
-          COVID-19 Estimator
-        </h2>
-        <form id="covid19-form" action="" method="POST">
+        <form id="covid19-form" method="POST">
           <div class="dow">
             <label for="population">
               Population:
@@ -60,6 +60,58 @@
           <button id="submit" type="submit" data-go-estimate>Submit</button>
 
         </form>
+
+
+      <div class="estimates">
+        <div class="region">
+          <h2>Region:</h2>
+          <p class="name">Name: Africa</p>
+          <p class="avgAge">Average Age: 19.7</p>
+          <p class="avgDailyIncomeInUSD">Average Daily Income in USD: $5</p>
+          <p class="avgDailyIncomePopulation">Average Daily Income Population: 0.71</p>
+          <!-- Filled Dynamically -->
+          <p class="population">Population: </p>
+          <p class="timeToElapse">Time to Elapse: </p>
+          <p class="periodType">Period (days, weeks, months):</p>
+          <p class="reportedCases">Number of Reported Cases:</p>
+          <p class="totalHospitalBeds">Total Hospital Beds Available: </p>
+
+          <ul>
+            <h2>References</h2>
+            <li>- 19.7 years is the AVG age in Africa - <a href="https://www.worldometers.info/world-population/africa-population/">worldometers.info</a></li>
+            <li>- AVG daily income is ~$5 for 85% of Africans - <a href="https://blogs.worldbank.org/opendata/85-africans-live-less-550-day">blogs.worldbank.org</a></li>
+            <li>- COVID-19 infections doubles every 3 days. Expect 50x (at least 10x) recported cases to be actual
+            number of infected people - <a href="https://medium.com/@Jason_Scott_Warner/the-sober-math-everyone-must-understand-about-the-pandemic-2b0145881993">Jason S. Warner</a></li>
+            <li>- Several stats from Harvard Medical School / Massachusetts General Hospital - <a href="https://l.facebook.com/l.php?u=https%3A%2F%2Fexternalmediasite.partners.org%2FMediasite%2FPlay%2F53a4003de5ab4b4da5902f078744435a1d%3Ffbclid%3DIwAR3-HS64-QB9AEbJdxV7ovcCB6nDXGgOkEawgTOYtQx-b720cIKVaJVPq-k&h=AT0cFGJ2kVgvRvBxtnR5jEpK-oXjP_j6ftEMmJsss_XdAtuIcNv__ZI5DUnIBnDk_z6p5vbToAEW842x6PI8kDF1xTkSpq1-i3F8V-9JG1gCHFA4nzJFXdQp-RnPIDM3wsZSQre1yNTOcBphYNbM1i1CuwG7">move to 000942
+            of this video</a></li>
+          </ul>       
+        </div>
+        
+
+        <div>
+          <div class="covid19-impact">
+            <h2>Impact </h2>
+            <p class="currentlyInfected">Currently Infected: </p>
+            <p class="infectionsByRequestedTime">Infections By Requested Time: </p>
+            <p class="severeCasesByRequestedTime">Severe Cases By Requested Time: </p>
+            <p class="hospitalBedsByRequestedTime">Hospital Beds By Requested Time: </p>
+            <p class="casesForICUByRequestedTime">Cases For ICU By Requested Time: </p>
+            <p class="casesForventilatorsByRequestedTime">Cases For Ventilators By Requested Time: </p>
+            <p class="dollarsInFlight">Amount of Money Lost During Outbreak: $</p>
+          </div>
+          
+          <!-- Severe Cases-->
+          <div class="covid19-severe-impact">
+            <h2>Severe Case Scenario</h2>
+            <p class="x-currentlyInfected">Currently Infected: </p>
+            <p class="x-infectionsByRequestedTime">Infections By Requested Time: </p>
+            <p class="x-severeCasesByRequestedTime">Severe Cases By Requested Time: </p>
+            <p class="x-hospitalBedsByRequestedTime">Hospital Beds By Requested Time: </p>
+            <p class="x-casesForICUByRequestedTime">Cases For ICU By Requested Time: </p>
+            <p class="x-casesForventilatorsByRequestedTime">Cases For Ventilators By Requested Time: </p>
+            <p class="x-dollarsInFlight">Amount of Money Lost During Outbreak: $</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

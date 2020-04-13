@@ -10,9 +10,15 @@ html,
 body {
   background-color: #6718bb;
   font-family: 'Raleway', Helvetica, sans-serif;
+  line-height: 1.4;
+  font-size: 16px;
   height: 100vh;
 }
 
+#main {
+  border-radius: 5px;
+  margin: 0 50px;
+}
 
 header {
   font-size: 2em;
@@ -20,9 +26,27 @@ header {
   margin: 20px;
 }
 
+#main div:first-child {
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+
 h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+  margin-bottom: 10px;
 }
 
 .row {
@@ -31,11 +55,13 @@ h2 {
 }
 
 .col {
-  max-width: 760px;
+  /* max-width: 760px; */
   width: 100%;
   display: block;
-  margin: 0 auto;
-  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  /* margin: 0 auto;
+  margin-top: 30px; */
 }
 
 .col-5 h2 {
@@ -47,24 +73,38 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 form input {
   margin-bottom: 30px;
 }
 
+.estimates {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.estimates .region,
+.estimates .covid19-impact,
+.estimates .covid19-severe-impact {
+  padding-left: 40px;
+}
+
+.estimates h2 {
+  margin-top: 0;
+  text-align: left;
+}
+
 #main {
   background-color: #ffffff;
   display: block;
-  border-radius: 6px;
-  width: 85%;
-  margin: auto;
-  margin-top: 100px;
-  max-width: 600px;
-  padding: 10px;
-  padding-top: 20px;
 }
+
+/* .covid19-impact p,
+.covid19-severe-impact p {
+  font-weight: 600;
+} */
 
 .dow {
   display: flex;
@@ -112,7 +152,7 @@ form label {
   }
 
   .col {
-    width: 80%;
+    width: 100%;
   }
 
   form label,
@@ -125,5 +165,56 @@ form label {
     margin: 0;
     margin-top: 15px;
     margin-bottom: 15px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  #main {
+    margin: 0 20px;
+  }
+
+  .estimates .region {
+    padding-left: 20px;
+  }
+
+  /* .estimates .covid19-impact,
+.estimates .covid19-severe-impact {
+  padding-left: 20px;
+} */
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .estimates {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .estimates .covid19-impact {
+    padding-left: 20px;
+    margin-top: 20px;
+  }
+
+  .estimates .covid19-severe-impact {
+    padding-left: 20px;
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  #main {
+    margin: 0 10px;
+  }
+
+  .estimates .region {
+    padding-left: 20px;
+  }
+
+  .estimates .covid19-impact,
+  .estimates .covid19-severe-impact {
+    padding-left: 20px;
   }
 }
