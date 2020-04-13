@@ -1,7 +1,7 @@
 const $ = elem => document.querySelector(elem);
 
 const form = $('#covid19-form');
-const population = $('[data-populaton]');
+const population = $('[data-population]');
 const timeToElapse = $('[data-time-to-elapse]');
 const reportedCases = $('[data-reported-cases]');
 const totalHospitalBeds = $('[data-total-hospital-beds]');
